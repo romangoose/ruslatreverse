@@ -1,8 +1,6 @@
 # Any copyright is dedicated to the Public Domain.
 # https://creativecommons.org/publicdomain/zero/1.0/
-
-#OR
-
+# ===================== OR =========================
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
@@ -92,13 +90,6 @@ RULES = {
     # Ў как UH (У краткая, по логике это должно быть как-то похоже на Й, но пока получается ближе к Ы)
 }
 
-'''
-MULTS = []
-for key in RULES:
-    if len(RULES[key]) > 1:
-        MULTS.append(key.upper())
-'''
-
 def variations(inStr, pref = '', outList = None):
     """все возможные комбинации регистров"""
 
@@ -173,15 +164,6 @@ def trans_to(inStr):
     outStr = inStr
     for key in RULES_IN:
         outStr = outStr.replace(key, RULES_IN[key])
-    '''
-    for key in RULES:
-        for var in variations(key):
-            # для правильного определения верхнего регистра нужно символ,
-            # если вдруг он соответствует мультиграфеме,
-            # обработать парами вместе со следующим символом
-            for pair in pairs(var, key):
-                outStr = outStr.replace(pair[0], pair[1])
-    '''
     return outStr
 
 def trans_from(inStr):
@@ -189,28 +171,7 @@ def trans_from(inStr):
     outStr = inStr
     for key in RULES_OUT:
         outStr = outStr.replace(key, RULES_OUT[key])
-    '''
-    for key in RULES:
-        repl = RULES[key]
-        # не исключаем ситуацию, что регистр символов в мультиграфеме не соблюден,
-        # оппределяем все варианты
-        for var in variations(repl):
-            if (
-                var == var.upper()
-                or var == var.capitalize()
-            ):
-                # про заглавность исходного символа можно судить только если
-                # строго все его символы заглавные
-                # либо заглавный только первый символ
-                # - это предполагает разумный замысел при его первоначальном создании
-                # остальное - сКОрЕе вСеГо мУСоР
-                repl = key.upper()
-            else:
-                repl = key.lower()
-
-            outStr = outStr.replace(var, repl)
-    '''
-    return outStr
+     return outStr
 
 
 def silly_trans_to(inStr):

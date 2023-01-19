@@ -44,8 +44,10 @@ for el in [
     print('восстановлено: ', b)
     print()
 
+    #break
+
 print(time())
-for i in range(10000):
+for i in range(100000):
 #for i in range(1):
     b = fTo(b)    
     b = fFrom(b)
@@ -53,7 +55,7 @@ print(time())
 
 a = ''
 print(time())
-for i in range(10000):
+for i in range(100000):
 #for i in range(1):
     a = a + b
 a = fTo(a)    
